@@ -1,0 +1,39 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: gen-policy-generator
+policyDefaults:
+  namespace: acm-wookie-samples
+  remediationAction: enforce
+  complianceType: musthave
+  policySets:
+    - acm-compliance-type
+placementBindingDefaults:
+  name: "acm-compliance-type-testing"
+
+policies:
+  - name: only-real-code
+    remediationAction: enforce
+    manifests:
+      - path: policies/kubeletconfig.yml
+        complianceType: musthave
+      - path: policies/kubeadmin-removed.yml
+        complianceType: mustnothave
+
+
+
+  - name: with-placeholder
+    remediationAction: enforce
+    manifests:
+      - path: policies/kubeletconfig.yml
+        complianceType: musthave
+      - path: policies/placeholder-test.yml
+        complianceType: mustonlyhave
+      - path: policies/kubeadmin-removed.yml
+        complianceType: mustnothave
+
+policySets:
+  - name: acm-compliance-type
+    placement:
+      placementName: "all-ocp"

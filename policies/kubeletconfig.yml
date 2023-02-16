@@ -1,0 +1,23 @@
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: 75-master-kubelet-ocp4-cis
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      pools.operator.machineconfiguration.openshift.io/master: ""
+  kubeletConfig:
+    # ### 
+    # Standard:ocp4-cis-node
+    # Control:kubelet-enable-protect-kernel-defaults
+    # kubelet - Enable Protect Kernel Defaults (CIS-OCP 4.2.6)
+    # ###
+    protectKernelDefaults: true
+
+    # ###
+    # Standard:ocp4-cis
+    # Control:kubelet-enable-streaming-connections
+    # kubelet - Do Not Disable Streaming Timeouts (CIS-OCP 4.2.5)
+    # ###
+    streamingConnectionIdleTimeout: 5m0s

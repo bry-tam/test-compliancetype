@@ -1,0 +1,11 @@
+# ###
+# Standard:ocp4-cis
+# Control:kubeadmin-removed
+# Ensure that the kubeadmin secret has been removed (CIS-OCP 3.1.1;5.1.1)
+# ###
+kind: Secret
+apiVersion: v1
+metadata:
+  name: kubeadmin
+  namespace: kube-system
+type: Opaque

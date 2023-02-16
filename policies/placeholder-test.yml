@@ -1,0 +1,7 @@
+# ###
+# Standard:ocp4-cis
+# Control:kubelet-enable-streaming-connections
+# kubelet - Do Not Disable Streaming Timeouts (CIS-OCP 4.2.5)
+# ###
+
+# See kubeletconfig in ocp4-cis-cluster-common
